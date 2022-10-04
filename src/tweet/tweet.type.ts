@@ -5,13 +5,13 @@ export class TweetType {
   @Field((_type) => ID)
   id: string;
 
-  @Field()
+  @Field((_type) => String)
   text: string;
 
-  @Field()
+  @Field((_type) => String)
   createdAt: Date;
 
-  @Field()
+  @Field((_type) => String)
   updatedAt: Date;
 
   @Field((_type) => Boolean, { defaultValue: false })

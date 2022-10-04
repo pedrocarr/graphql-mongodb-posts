@@ -1,5 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { CreateTweetInput } from './create-tweet.input';
 import { TweetService } from './tweet.service';
 import { TweetType } from './tweet.type';
 
@@ -13,13 +14,13 @@ export class TweetResolver {
     return this.tweetService.getTweet(id);
   }
 
+  @Query((_returns) => [TweetType])
+  tweets() {
+    return this.tweetService.getTweets();
+  }
+
   @Mutation(() => TweetType)
-  createTweet(
-    @Args('text') text: string,
-    @Args('createdAt') createdAt: Date,
-    @Args('updatedAt') updatedAt: Date,
-    @Args('liked') liked: boolean,
-  ) {
-    return this.tweetService.createTweet(text, createdAt, updatedAt, liked);
+  createTweet(@Args('createTweetInput') createTweetInput: CreateTweetInput) {
+    return this.tweetService.createTweet(createTweetInput);
   }
 }

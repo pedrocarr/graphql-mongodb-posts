@@ -12,13 +12,16 @@ type Tweet {
 
 type Query {
   tweet(id: String!): Tweet!
+  tweets: [Tweet!]!
 }
 
 type Mutation {
-  createTweet(text: String!, createdAt: DateTime!, updatedAt: DateTime!, liked: Boolean!): Tweet!
+  createTweet(createTweetInput: CreateTweetInput!): Tweet!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
+input CreateTweetInput {
+  text: String!
+  createdAt: String!
+  updatedAt: String!
+  liked: Boolean!
+}

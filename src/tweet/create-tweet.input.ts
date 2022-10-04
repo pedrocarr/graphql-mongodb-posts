@@ -1,7 +1,7 @@
-import { ArgsType, Field } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { IsDateString, MinLength } from 'class-validator';
 
-@ArgsType()
+@InputType()
 export class CreateTweetInput {
   @MinLength(1)
   @Field((_type) => String)

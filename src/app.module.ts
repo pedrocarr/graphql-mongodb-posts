@@ -16,6 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
+      path: '/tweet',
     }),
     TweetModule,
   ],

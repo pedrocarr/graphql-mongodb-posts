@@ -10,9 +10,18 @@ type Tweet {
   liked: Boolean!
 }
 
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
 type Query {
   tweet(id: String!): Tweet!
   tweets: [Tweet!]!
+  user: User!
 }
 
 type Mutation {

@@ -4,6 +4,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TweetModule } from './tweet/tweet.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Tweet } from './tweet/tweet.entity';
+import { UserModule } from './user/user.module';
+import { User } from './user/user.entity';
 
 @Module({
   imports: [
@@ -12,7 +14,7 @@ import { Tweet } from './tweet/tweet.entity';
       url: 'mongodb://localhost:27017/tweet',
       synchronize: true,
       useUnifiedTopology: true,
-      entities: [Tweet],
+      entities: [Tweet, User],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -20,6 +22,7 @@ import { Tweet } from './tweet/tweet.entity';
       path: '/tweet',
     }),
     TweetModule,
+    UserModule,
   ],
 })
 export class AppModule {}

@@ -21,11 +21,12 @@ type User {
 type Query {
   tweet(id: String!): Tweet!
   tweets: [Tweet!]!
-  user: User!
+  user(id: String!): User!
 }
 
 type Mutation {
   createTweet(createTweetInput: CreateTweetInput!): Tweet!
+  createUser(createUserInput: CreateUserInput!): User!
 }
 
 input CreateTweetInput {
@@ -33,4 +34,11 @@ input CreateTweetInput {
   createdAt: String!
   updatedAt: String!
   liked: Boolean!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String!
 }

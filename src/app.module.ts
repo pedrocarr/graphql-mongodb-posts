@@ -11,7 +11,7 @@ import { User } from './user/user.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb://localhost:27017/tweet',
+      url: 'mongodb://localhost:27017/tweets',
       synchronize: true,
       useUnifiedTopology: true,
       entities: [Tweet, User],

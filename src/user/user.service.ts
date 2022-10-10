@@ -16,6 +16,10 @@ export class UserService {
     return this.userRepository.findOneByOrFail({ id });
   }
 
+  async getUsers(): Promise<User[]> {
+    return this.userRepository.find();
+  }
+
   async createUser(createUserInput: CreateUserInput): Promise<User> {
     const user = this.userRepository.create({
       id: uuid(),

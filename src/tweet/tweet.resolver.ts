@@ -1,7 +1,16 @@
 import { Inject } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
+import { UserService } from 'src/user/user.service';
 import { AssignUsersToTweetInput } from './assign-users-to-tweet-input';
 import { CreateTweetInput } from './create-tweet.input';
+import { Tweet } from './tweet.entity';
 import { TweetService } from './tweet.service';
 import { TweetType } from './tweet.type';
 
@@ -9,6 +18,9 @@ import { TweetType } from './tweet.type';
 export class TweetResolver {
   @Inject()
   private readonly tweetService: TweetService;
+
+  @Inject()
+  private readonly userService: UserService;
 
   @Query((_returns) => TweetType)
   tweet(@Args('id') id: string) {
@@ -32,5 +44,10 @@ export class TweetResolver {
   ) {
     const { tweetId, usersIds } = assignUsersToTweetInput;
     return this.tweetService.assignUsersToTweet(tweetId, usersIds);
+  }
+
+  @ResolveField()
+  async users(@Parent() tweet: Tweet) {
+    return this.userService.getManyUsers(tweet.users);
   }
 }

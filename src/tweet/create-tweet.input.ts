@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, ID, InputType } from '@nestjs/graphql';
 import { IsDateString, MinLength } from 'class-validator';
 
 @InputType()
@@ -17,4 +17,7 @@ export class CreateTweetInput {
 
   @Field((_type) => Boolean)
   liked: boolean;
+
+  @Field((_type) => [ID], { defaultValue: [] })
+  users: string[];
 }

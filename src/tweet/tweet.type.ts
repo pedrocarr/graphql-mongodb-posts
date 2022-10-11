@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { UserType } from 'src/user/user.type';
 
 @ObjectType('Tweet')
 export class TweetType {
@@ -16,4 +17,7 @@ export class TweetType {
 
   @Field((_type) => Boolean, { defaultValue: false })
   liked: boolean;
+
+  @Field((_type) => [UserType])
+  users: string[];
 }

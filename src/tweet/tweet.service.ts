@@ -28,4 +28,13 @@ export class TweetService {
 
     return this.tweetRepository.save(tweet);
   }
+
+  async assignUsersToTweet(
+    tweetId: string,
+    usersIds: string[],
+  ): Promise<Tweet> {
+    const tweet = await this.tweetRepository.findOneByOrFail({ id: tweetId });
+    tweet.users = [...tweet.users, ...usersIds];
+    return this.tweetRepository.save(tweet);
+  }
 }

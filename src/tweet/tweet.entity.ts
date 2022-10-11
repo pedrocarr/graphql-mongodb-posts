@@ -19,4 +19,7 @@ export class Tweet {
 
   @Column()
   liked: boolean;
+
+  @Column()
+  users: string[];
 }

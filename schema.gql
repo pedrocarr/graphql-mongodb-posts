@@ -2,20 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Tweet {
-  id: ID!
-  text: String!
-  createdAt: String!
-  updatedAt: String!
-  liked: Boolean!
-}
-
 type User {
   id: ID!
   name: String!
   email: String!
   createdAt: String!
   updatedAt: String!
+}
+
+type Tweet {
+  id: ID!
+  text: String!
+  createdAt: String!
+  updatedAt: String!
+  liked: Boolean!
+  users: [User!]!
 }
 
 type Query {
@@ -27,6 +28,7 @@ type Query {
 
 type Mutation {
   createTweet(createTweetInput: CreateTweetInput!): Tweet!
+  assignUsersToTweet(assignUsersToTweetInput: AssignUsersToTweetInput!): Tweet!
   createUser(createUserInput: CreateUserInput!): User!
 }
 
@@ -35,6 +37,12 @@ input CreateTweetInput {
   createdAt: String!
   updatedAt: String!
   liked: Boolean!
+  users: [ID!] = []
+}
+
+input AssignUsersToTweetInput {
+  tweetId: ID!
+  usersIds: [ID!]!
 }
 
 input CreateUserInput {
